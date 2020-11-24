@@ -18,8 +18,8 @@ public class PostController {
     }
     @GetMapping ("/posts/create")
     @ResponseBody
-    public String viewCreatePost() {
-        return "This is a View Create Post Page.";
+    public String viewCreateForm() {
+        return "This is a View Form for Creating Post Page.";
     }
     @PostMapping("/posts/create")
     @ResponseBody
