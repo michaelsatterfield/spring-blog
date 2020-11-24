@@ -30,12 +30,12 @@ public class HelloController {
     public int getZipCode(@PathVariable int zipcode) {
         return zipcode;
     }
-
-    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
-    @ResponseBody
-    public String addOne(@PathVariable int number) {
-        return number + " plus one is " + (number + 1) + "!";
-    }
+//
+//    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String addOne(@PathVariable int number) {
+//        return number + " plus one is " + (number + 1) + "!";
+//    }
 //    @GetMapping ("/fizzbuzz/{number}")
 //    @ResponseBody
 //    public Integer fizz(@PathVariable int number) {
