@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng" xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -8,10 +8,14 @@
 </head>
 <body style="background-color: lemonchiffon">
 <nav th:replace="partials/partials :: navbar"></nav>
-<h1 th:if="${correct}">Correct!</h1>
-<h1 th:if="${!correct}">Try Again</h1>
-<a href="/roll-dice">back</a>
+<br>
+<h3>
+   Individual Posts<br>
+</h3>
+<h4 th:text="${post}"></h4>
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
+<br>
+<a href="/posts/index"> go to all posts</a>
 <br>
 <footer th:replace="partials/partials :: footer"></footer>
 </body>
