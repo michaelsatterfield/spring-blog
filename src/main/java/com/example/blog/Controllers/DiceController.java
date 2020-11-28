@@ -17,8 +17,8 @@ public class DiceController {
         int random = (int) (Math.random() * ((6 - 1))) + 1;
         boolean correct = (n == random);
         model.addAttribute("correct",correct);
-        model.addAttribute("n",n);
-        model.addAttribute("random",random);
+//        model.addAttribute("n",n);
+//        model.addAttribute("random",random);
         return "/correctDice";
     }
 }
