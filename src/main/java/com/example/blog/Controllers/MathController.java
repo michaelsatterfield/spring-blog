@@ -5,27 +5,27 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MathController {
-    @RequestMapping(path = "/add/{number}/and/{numberB}", method = RequestMethod.GET)
+    @GetMapping("/add/{number}/and/{numberB}")
     @ResponseBody
     public String addition(@PathVariable int number, @PathVariable int numberB) {
         return number + " plus " + numberB + " = " + (number + numberB) + "!";
     }
 
-    @RequestMapping(path = "/subtract/{number}/from/{numberB}", method = RequestMethod.GET)
+    @GetMapping("/subtract/{number}/from/{numberB}")
     @ResponseBody
     public String subtraction(@PathVariable int number, @PathVariable int numberB) {
         return number + " minus " + numberB + " = " + (number - numberB) + "!";
     }
 
-    @RequestMapping(path = "/multiply/{number}/and/{numberB}", method = RequestMethod.GET)
+    @GetMapping("/multiply/{number}/and/{numberB}")
     @ResponseBody
     public String multiplication(@PathVariable int number, @PathVariable int numberB) {
         return number + " times " + numberB + " = " + (number * numberB) + "!";
     }
 
-    @RequestMapping(path = "/divide/{number}/by/{numberB}", method = RequestMethod.GET)
+    @GetMapping("/divide/{number}/by/{numberB}")
     @ResponseBody
-    public String division(@PathVariable float number, @PathVariable float numberB) {
+    public String division(@PathVariable double number, @PathVariable double numberB) {
         return number + " divided by " + numberB + " = " + (number / numberB) + "!";
     }
 

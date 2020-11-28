@@ -1,15 +1,34 @@
 package com.example.blog.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HelloController {
 
-    @GetMapping("/hello/{user}") //request
-    @ResponseBody // response
-    public String showAHelloMessage(@PathVariable String user) {
-        return "Hello from " + user; // what I respond with
+    @GetMapping("/hello/{name}") //request
+    public String showAHelloMessage(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "/hello";
+    }
+    @GetMapping("/join")
+    public String showJoinForm(Model model){
+        List<String> cohortNames = new ArrayList<>();
+        cohortNames.add("Zebra");
+        cohortNames.add("Tango");
+        cohortNames.add("Fruit");
+
+        model.addAttribute("cohortNames", cohortNames);
+        return "/join";
+    }
+    @PostMapping("/join")
+    public String postJoin(@RequestParam(name = "cohort")String cohort,Model model){
+        model.addAttribute("cohort",cohort);
+        return "/join";
     }
 
     @GetMapping("/create-a-hello")
@@ -30,19 +49,17 @@ public class HelloController {
     public int getZipCode(@PathVariable int zipcode) {
         return zipcode;
     }
-//
-//    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String addOne(@PathVariable int number) {
-//        return number + " plus one is " + (number + 1) + "!";
-//    }
-//    @GetMapping ("/fizzbuzz/{number}")
-//    @ResponseBody
-//    public Integer fizz(@PathVariable int number) {
-//        String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
-//        for (String i : cars) {
-//            System.out.println(i);
-//        }
-//        return cars.length;
-//    }
+
+    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
+    @ResponseBody
+    public String addOne(@PathVariable int number) {
+        return number + " plus one is " + (number + 1) + "!";
+    }
+//    thymeLeaf example
+//    uses NO @ResponseBody...
+    @GetMapping("/home")
+    public String welcome(){
+        return "home";
+    }
+
 }
