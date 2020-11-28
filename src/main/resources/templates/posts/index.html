@@ -8,19 +8,15 @@
 </head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<h1>Guess a Number</h1>
-<a href="/roll-dice/1">1</a>
-<a href="/roll-dice/2">2</a>
-<a href="/roll-dice/3">3</a>
-<a href="/roll-dice/4">4</a>
-<a href="/roll-dice/5">5</a>
-<a href="/roll-dice/6">6</a>
-
-<!--<form action="/roll-dice" method="post">-->
-<!--    <input type="text" name="n" id="diceRoll" class="field">-->
-<!--    <button>Roll!</button>-->
-<!--</form>-->
+<br>
+<h3>
+    All Posts<br>
+</h3>
+<ul>
+    <h4 th:each="name : ${newPosts}"><span th:text="${name}"></span></h4>
+</ul>
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
+<a href="/posts/show"> go to individual posts</a>
 <br>
 <footer th:replace="partials/partials :: footer"></footer>
 </body>
