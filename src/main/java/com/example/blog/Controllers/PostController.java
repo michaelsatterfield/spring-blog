@@ -1,6 +1,5 @@
 package com.example.blog.Controllers;
 
-import com.example.blog.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +11,9 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+
+
     @GetMapping ("/posts/index")
     public String allPosts(Model model) {
         List<String> newPosts = new ArrayList<>();
@@ -24,6 +26,7 @@ public class PostController {
 
     @GetMapping ("/posts/show")
     public String individualPost(@ModelAttribute String post, Model model) {
+
         model.addAttribute("post"," Here is a New Post!" + post );
         //        Post newPost = new Post();
         return "/posts/show";
