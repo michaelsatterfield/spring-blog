@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class DiceController {
+//    return a view
     @GetMapping("/roll-dice")
     public String dice(){
         return "/roll-dice";
@@ -19,6 +20,6 @@ public class DiceController {
         model.addAttribute("correct",correct);
 //        model.addAttribute("n",n);
 //        model.addAttribute("random",random);
-        return "/correctDice";
+        return "/roll-dice";
     }
 }

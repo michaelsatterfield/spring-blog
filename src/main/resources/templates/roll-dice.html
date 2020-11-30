@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>show</title>
-</head>
+<head th:replace="partials/partials :: head"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <h1>Guess a Number</h1>
+<!--anchors to pages-->
 <a href="/roll-dice/1">1</a>
 <a href="/roll-dice/2">2</a>
 <a href="/roll-dice/3">3</a>
 <a href="/roll-dice/4">4</a>
 <a href="/roll-dice/5">5</a>
 <a href="/roll-dice/6">6</a>
+
+
+<h1 th:if="${correct}">Correct!</h1>
+<h1 th:if="${correct == false}">Try Again</h1>
 
 <!--<form action="/roll-dice" method="post">-->
 <!--    <input type="text" name="n" id="diceRoll" class="field">-->
