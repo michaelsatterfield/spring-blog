@@ -3,18 +3,21 @@
 <head th:replace="partials/partials :: head"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
-<br>
-<h3>
+<main class="container">
+    <form th:action="@{posts/create}"  th:method="post">
+     Title:
+        <input type="text" name="title" >
+        <br>
+       Body:
+        <input name="body"/>
+        <br/>
+        <input type="submit" value="submit">
+    </form>
 
-    All Posts<br>
-</h3>
-<ul>
-    <h4 th:each="post : ${posts}"><span th:text="${post.title}"></span></h4>
-    <h4 th:each="post : ${posts}"><span th:text="${post.body}"></span></h4>
-</ul>
+
+</main>
+
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
-<a href="/posts/show"> go to individual posts</a>
-<br>
 <footer th:replace="partials/partials :: footer"></footer>
 </body>
 </html>
