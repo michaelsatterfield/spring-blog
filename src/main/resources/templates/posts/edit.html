@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/partials :: head"></head>
+<body>
+<nav th:replace="partials/partials :: navbar"></nav>
+<main class="container">
+    <form th:action="@{/posts/{id}/edit (id=${post.id})}"  th:method="post">
+        <h1>Edit Post</h1>
+     Title:
+        <input  name="title" th:value="${post.title}" />
+        <br>
+       Body:
+        <input name="body" th:value="${post.body}" />
+        <br/>
+        <input type="submit" />
+    </form>
+    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post">
+        <button class="btn btn-danger">Delete</button>
+    </form>
+
+
+</main>
+
+<div th:replace="partials/partialScriptBs :: bsScript"></div>
+<footer th:replace="partials/partials :: footer"></footer>
+</body>
+</html>
