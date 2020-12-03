@@ -15,17 +15,28 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    @OneToOne
+    private User owner;
+
     public Post() {}
 
     //constructor
-    public Post(String title, String body) {
+//    create constructor
+    public Post(String title, String body,User owner ) {
         this.title = title;
         this.body = body;
+        this.owner = owner;
     }
-    public Post(Long id,String title, String body) {
+    public Post(Long id,String title, String body, User owner) {
         this.title = title;
         this.body = body;
         this.id = id;
+        this.owner = owner;
+    }
+
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
     }
 
     public long getId() {
@@ -49,5 +60,14 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
