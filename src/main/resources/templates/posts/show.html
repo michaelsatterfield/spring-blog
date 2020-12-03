@@ -4,21 +4,23 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<h2 style="color: blue">
+<h1 style="color: darkgrey">
      Post #<span th:text="${post.id}"></span> :
     <br>
-</h2>
-<div class="card">
-    <h3 th:text="${post.title}"></h3>
-    <h5 th:text="${post.body}"></h5>
-</div>
-<div class="container row">
-    <form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="get" class="mr-1" >
-        <button class="btn btn-primary">Edit</button>
-    </form>
-    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post" class="mr-1">
-        <button class="btn btn-danger">Delete</button>
-    </form>
+</h1>
+<div class="container">
+    <div class="card">
+        <h3 th:text="${post.title}"></h3>
+        <h5 th:text="${post.body}"></h5>
+    </div>
+    <div class="container row">
+        <form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="get" class="mr-1">
+            <button class="btn btn-primary">Edit</button>
+        </form>
+        <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post" class="mr-1">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
 </div>
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
 <br>

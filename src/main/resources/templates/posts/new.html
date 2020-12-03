@@ -3,15 +3,20 @@
 <head th:replace="partials/partials :: head"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
+
 <main class="container">
+    <div class=""></div>
     <form th:action="@{/posts/create}"  th:method="post">
+        <h1 style="color: darkgrey">Create a New Post</h1>
         Title:
-        <input type="text" name="title" />
+        <br>
+        <input  class="ml-1" name="title"  />
         <br>
         Body:
-        <input name="body"/>
+        <br>
+        <textarea name="body"></textarea>
         <br/>
-        <input type="submit" />
+        <input class="btn btn-primary" type="submit" />
     </form>
 
 

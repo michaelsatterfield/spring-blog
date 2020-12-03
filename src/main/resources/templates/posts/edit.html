@@ -3,21 +3,20 @@
 <head th:replace="partials/partials :: head"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
+
 <main class="container">
     <form th:action="@{/posts/{id}/edit (id=${post.id})}"  th:method="post">
-        <h1>Edit Post</h1>
-     Title:
-        <input  name="title" th:value="${post.title}" />
+        <h1 style="color: darkgrey">Edit Post</h1>
+        Title:
         <br>
-       Body:
-        <input name="body" th:value="${post.body}" />
+        <input  class="ml-1" name="title" th:value="${post.title}" />
+        <br>
+        Body:
+        <br>
+        <textarea name="body" th:value="${post.body}"></textarea>
         <br/>
-        <input type="submit" />
+        <input class="btn btn-primary" type="submit" />
     </form>
-    <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post">
-        <button class="btn btn-danger">Delete</button>
-    </form>
-
 
 </main>
 
