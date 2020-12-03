@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/partials :: head"></head>
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<h3>
-   Individual Posts<br>
-</h3>
-<h4 th:text="${post}"></h4>
+<h1 style="color: darkgrey">
+     Post #<span th:text="${post.id}"></span> :
+    <br>
+</h1>
+<div class="container">
+    <div class="card">
+        <h3 th:text="${post.title}"></h3>
+        <h5 th:text="${post.body}"></h5>
+    </div>
+    <div class="container row">
+        <form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="get" class="mr-1">
+            <button class="btn btn-primary">Edit</button>
+        </form>
+        <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post" class="mr-1">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
 <br>
 <a href="/posts/index"> go to all posts</a>
