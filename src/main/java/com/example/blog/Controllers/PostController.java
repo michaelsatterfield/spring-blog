@@ -1,6 +1,8 @@
 package com.example.blog.Controllers;
 import com.example.blog.models.Post;
+import com.example.blog.models.User;
 import com.example.blog.repos.PostRepository;
+import com.example.blog.repos.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,12 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao){
+
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 //Show all posts
     @GetMapping("/posts")
@@ -50,10 +55,14 @@ public class PostController {
     public String createPost(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "body") String body
+
     ){
+        User user = userDao.getOne(1l);
         Post post = new Post(title, body);
+        post.setOwner(user);
+        Post dbPost = postDao.save(post);
         postDao.save(post);
-        return "redirect:/posts";
+        return "redirect:/posts" + dbPost.getId();
     }
 
     @GetMapping("/posts/{id}/edit")
@@ -72,6 +81,7 @@ public class PostController {
         Post dbPost = postDao.getOne(id);
         dbPost.setTitle(title);
         dbPost.setBody(body);
+
         postDao.save(dbPost);
         return "redirect:/posts/";
     }
