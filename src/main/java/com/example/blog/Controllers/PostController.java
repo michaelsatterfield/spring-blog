@@ -3,13 +3,11 @@ import com.example.blog.models.Post;
 import com.example.blog.models.User;
 import com.example.blog.repos.PostRepository;
 import com.example.blog.repos.UserRepository;
+import com.example.blog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -17,11 +15,14 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
 
-    public PostController(PostRepository postDao, UserRepository userDao){
+//dependency injection...can also use @autowired
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService){
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 //Show all posts
     @GetMapping("/posts")
@@ -56,6 +57,7 @@ public class PostController {
         User user = userDao.getOne(1l);
         postToBeSaved.setOwner(user);
         Post dbPost = postDao.save(postToBeSaved);
+        emailService.prepareAndSend(dbPost,"Your ad has been created","Your post has been logged! \n\n Title: '" + dbPost.getTitle()+"'\n Body: '" + dbPost.getBody()+"'");
         return "redirect:/posts/" + dbPost.getId();
     }
     @GetMapping("/posts/{id}/edit")
@@ -71,19 +73,7 @@ public class PostController {
         postDao.save(postToBeEdited);
         return "redirect:/posts/";
     }
-//    @PostMapping("/posts/{id}/edit")
-//    public String editPost(
-//            @PathVariable long id,
-//            @RequestParam(name = "title") String title,
-//            @RequestParam(name = "body") String body
-//    ){
-//        Post dbPost = postDao.getOne(id);
-//        dbPost.setTitle(title);
-//        dbPost.setBody(body);
-//
-//        postDao.save(dbPost);
-//        return "redirect:/posts/";
-//    }
+
  @PostMapping("posts/{id}/delete")
     public String deleteAd(@PathVariable long id){
         postDao.deleteById(id);
