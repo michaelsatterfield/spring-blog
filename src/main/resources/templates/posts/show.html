@@ -9,25 +9,26 @@
     <br>
 </h1>
 <div class="container">
-    <div class="card">
+    <div class="card my-1 mx-1 p-2">
         <h3 th:text="${post.title}"></h3>
         <h5 th:text="${post.body}"></h5>
-
         <p>Created by<span th:text="${post.owner.email}"></span></p>
     </div>
-
     <div class="container row">
         <form th:action="@{/posts/{id}/edit(id=${post.getId()})}" method="get" class="mr-1">
             <button class="btn btn-primary">Edit</button>
         </form>
+        <form th:action="@{/posts}" method="get" class="mr-1">
+            <button class="btn btn-secondary">All Posts</button>
+        </form>
         <form th:action="@{/posts/{id}/delete(id=${post.getId()})}" method="post" class="mr-1">
             <button class="btn btn-danger">Delete</button>
         </form>
-    </div>
+        </div>
 </div>
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
 <br>
-<a href="/posts/index"> go to all posts</a>
+<!--<a href=/posts"> go to all posts</a>-->
 <br>
 <footer th:replace="partials/partials :: footer"></footer>
 </body>

@@ -9,6 +9,10 @@ body, .background{
 }
 .nav-link{
     color: white !important;
+    font-family: American Typewriter !important;
+}
+.card{
+    background-color: beige;
 }
 
 footer{
