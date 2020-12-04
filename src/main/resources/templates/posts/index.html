@@ -9,14 +9,13 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-<h1 class="ml-1 mb-1" style="color: darkgrey; margin-top: -20px">
-    All Posts
-</h1>
+
 <div class="container">
+    <h1 class="ml-1 mb-1" style="color: darkgrey; margin-top: -20px">All Posts</h1>
 <div class="card my-1 mx-1" th:each="post : ${posts}">
     <h3 th:text="${post.title}">My Post Example</h3>
     <h4 th:text="${post.body}">12341234</h4>
-    <h5>created by: <span th:text="${post.owner.username}"></span></h5>
+    <h5 style="color: darkgrey">created by: <span th:text="${post.owner.username}"></span></h5>
     <div class="container row">
         <form th:action="@{/posts/{id}/(id=${post.getId()})}" method="get" class="mr-1 my-1">
             <button class="btn btn-primary">View</button>

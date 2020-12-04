@@ -46,25 +46,18 @@ public class PostController {
     }
 
     @GetMapping ("/posts/create")
-    public String viewCreateForm() {
-        return "posts/new";
+    public String viewCreateForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "posts/create";
     }
 
     @PostMapping("/posts/create")
-//    @ResponseBody
-    public String createPost(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-
-    ){
+    public String createPost(@ModelAttribute Post postToBeSaved){
         User user = userDao.getOne(1l);
-        Post post = new Post(title, body);
-        post.setOwner(user);
-        Post dbPost = postDao.save(post);
-        postDao.save(post);
-        return "redirect:/posts" + dbPost.getId();
+        postToBeSaved.setOwner(user);
+        Post dbPost = postDao.save(postToBeSaved);
+        return "redirect:/posts/" + dbPost.getId();
     }
-
     @GetMapping("/posts/{id}/edit")
     public String showEditPost(@PathVariable long id, Model viewModel){
         viewModel.addAttribute("post", postDao.getOne(id));
@@ -72,19 +65,25 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-//    @ResponseBody
-    public String editPost(
-            @PathVariable long id,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "body") String body
-    ){
-        Post dbPost = postDao.getOne(id);
-        dbPost.setTitle(title);
-        dbPost.setBody(body);
-
-        postDao.save(dbPost);
+    public String editPost(@PathVariable long id,@ModelAttribute Post postToBeEdited){
+        User user = userDao.getOne(1l);
+        postToBeEdited.setOwner(user);
+        postDao.save(postToBeEdited);
         return "redirect:/posts/";
     }
+//    @PostMapping("/posts/{id}/edit")
+//    public String editPost(
+//            @PathVariable long id,
+//            @RequestParam(name = "title") String title,
+//            @RequestParam(name = "body") String body
+//    ){
+//        Post dbPost = postDao.getOne(id);
+//        dbPost.setTitle(title);
+//        dbPost.setBody(body);
+//
+//        postDao.save(dbPost);
+//        return "redirect:/posts/";
+//    }
  @PostMapping("posts/{id}/delete")
     public String deleteAd(@PathVariable long id){
         postDao.deleteById(id);

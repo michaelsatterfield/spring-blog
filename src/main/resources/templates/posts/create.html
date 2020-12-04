@@ -5,16 +5,21 @@
 <nav th:replace="partials/partials :: navbar"></nav>
 
 <main class="container">
-    <h1 style="color: darkgrey">Edit Post</h1>
-    <form th:action="@{/posts/{id}/edit (id=${post.id})}"  th:method="post" th:object="${post}">
-        <label for="title">Title</label><br>
-        <input  class="ml-1" id="title" th:field="*{title}" />
+    <h1 style="color: darkgrey">Create a New Post</h1>
+    <div class=""></div>
+    <form th:action="@{/posts/create}"  th:method="post" th:object="${post}">
+
+        Title:
         <br>
-        <label for="body">Body</label><br>
-        <textarea id="body"  th:field="*{body}"></textarea>
+        <input  class="ml-1" th:field="*{title}" />
+        <br>
+        Body:
+        <br>
+         <textarea th:field="*{body}"></textarea>
         <br/>
         <input class="btn btn-primary" type="submit" />
     </form>
+
 
 </main>
 
