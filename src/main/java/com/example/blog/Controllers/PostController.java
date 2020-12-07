@@ -4,6 +4,7 @@ import com.example.blog.models.User;
 import com.example.blog.repos.PostRepository;
 import com.example.blog.repos.UserRepository;
 import com.example.blog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +55,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post postToBeSaved){
-        User user = userDao.getOne(1l);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToBeSaved.setOwner(user);
         Post dbPost = postDao.save(postToBeSaved);
         emailService.prepareAndSend(dbPost,"Your ad has been created","Your post has been logged! \n\n Title: '" + dbPost.getTitle()+"'\n Body: '" + dbPost.getBody()+"'");

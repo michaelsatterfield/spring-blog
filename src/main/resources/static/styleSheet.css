@@ -1,7 +1,8 @@
-body, .background{
+body, .background {
     background-color: lemonchiffon;
-    background-blend-mode: luminosity;
 }
+
+
 
 .navbar{
     background-color:  salmon;
