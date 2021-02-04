@@ -57,9 +57,9 @@ public class HelloController {
     }
 //    thymeLeaf example
 //    uses NO @ResponseBody...
-    @GetMapping("/home")
-    public String welcome(){
-        return "home";
-    }
+//    @GetMapping("/home")
+//    public String welcome(){
+//        return "home";
+//    }
 
 }
