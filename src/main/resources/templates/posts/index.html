@@ -10,19 +10,18 @@
 <body>
 <nav th:replace="partials/partials :: navbar"></nav>
 <br>
-
 <div class="container">
     <h1 class="ml-1 mb-1" style="color: darkgrey; margin-top: -20px">All Posts</h1>
-<div class="card my-1 mx-1 p-2" th:each="post : ${posts}">
-    <h3 th:text="${post.title}">My Post Example</h3>
-    <h4 th:text="${post.body}">12341234</h4>
-    <h5 style="color: darkgrey">created by: <span th:text="${post.owner.username}"></span></h5>
-    <div class="container row">
-        <form th:action="@{/posts/{id}/(id=${post.getId()})}" method="get" class="mr-1 my-1">
-            <button class="btn btn-primary">View</button>
-        </form>
+    <div class="card my-1 mx-1 p-2" th:each="post : ${posts}">
+        <h3 th:text="${post.title}">My Post Example</h3>
+        <h4 th:text="${post.body}">12341234</h4>
+        <h5 style="color: darkgrey">created by: <span th:text="${post.owner.username}"></span></h5>
+        <div class="container row">
+            <form th:action="@{/posts/{id}/(id=${post.getId()})}" method="get" class="mr-1 my-1">
+                <button class="btn btn-primary">View</button>
+            </form>
+        </div>
     </div>
-</div>
     <div sec:authorize="isAuthenticated()">
         This content is only shown to authenticated users.
 
@@ -31,6 +30,7 @@
         Email: <span th:text="${#authentication.principal.email}"/>
     </div>
 </div>
+
 <div th:replace="partials/partialScriptBs :: bsScript"></div>
 <br>
 <footer th:replace="partials/partials :: footer"></footer>

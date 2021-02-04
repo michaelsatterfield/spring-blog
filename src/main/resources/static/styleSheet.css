@@ -52,7 +52,7 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer,.navbar {
-    background: salmon !important;
+    background: #275112 !important;
 }
 #footer h5{
     padding-left: 10px;
