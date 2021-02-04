@@ -15,13 +15,11 @@ import java.util.List;
 @Controller
 public class HomeController {
     private final PostRepository postDao;
-    private final UserRepository userDao;
-    private final EmailService emailService;
+
 
     public HomeController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
-        this.userDao = userDao;
-        this.emailService = emailService;
+
     }
 
 
